@@ -1,25 +1,7 @@
 /* Resume page. */
-// Header
-var formattedName = HTMLheaderName.replace("%data%", "Joel Samuel Kapepula");
-var formattedRole = HTMLheaderRole.replace("%data%", "Web Developer");
-$("#header").prepend(formattedRole);
-$("#header").prepend(formattedName);
-
-// Contacts
-var formattedMobile = HTMLmobile.replace("%data%", "+27 72 552 72 33");
-var formattedEmail = HTMLemail.replace("%data%", "joel@responsive.co.za");
-var formattedTwitter = HTMLtwitter.replace("%data%", "@joelsamuelkap");
-var formattedGithub = HTMLgithub.replace("%data%", "joelsamuelk");
-var formattedLocation = HTMLlocation.replace("%data%", "Cape Town");
-$("#topContacts, #footerContacts").prepend(formattedLocation);
-$("#topContacts, #footerContacts").prepend(formattedGithub);
-$("#topContacts, #footerContacts").prepend(formattedTwitter);
-$("#topContacts, #footerContacts").prepend(formattedEmail);
-$("#topContacts, #footerContacts").prepend(formattedMobile);
 
 var bioPic = HTMLbioPic.replace("%data%", "images/joel.jpg");
 //var welcomeMsg = HTMLwelcomeMsg.replace("%data%", 0731566216);
-$("#workExperience").append(bioPic);
 // $("#workExperience h2").append(welcomeMsg);
 
 var bio = {
@@ -34,12 +16,36 @@ var bio = {
     },
     "welcomeMessage": "Hey,Welcome to my resume!",
     "skills": [
-        "HTML", "CSS", "Javascript", "PHP"
+        "HTML", "CSS", "Javascript", "PHP", "Wordpress", "JQuery"
 	],
     "biopic": "images/joel.jpg"
 }
 
-if(bio.skills.length > 0) {
+// Header Section
+if (bio.skills.length > 0) {
+	var formattedName = HTMLheaderName.replace("%data%", bio.name);
+	var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+	$("#header").prepend(formattedRole);
+	$("#header").prepend(formattedName);
+
+	// Contacts
+	var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+	$("#topContacts, #footerContacts").append(formattedMobile);
+	var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+	$("#topContacts, #footerContacts").append(formattedEmail);
+	var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+	$("#topContacts, #footerContacts").append(formattedTwitter);
+	var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+	$("#topContacts, #footerContacts").append(formattedGithub);
+	var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+	$("#topContacts, #footerContacts").append(formattedLocation);
+
+	var bioPic = HTMLbioPic.replace("%data%", bio.biopic);
+	var welcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+	$("#header").append(bioPic);
+	$("#header").append(welcomeMsg);
+
+	// Skills
 	$("#header").append(HTMLskillsStart);
 	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
 	$("#skills").append(formattedSkill);
@@ -49,7 +55,13 @@ if(bio.skills.length > 0) {
 	$("#skills").append(formattedSkill);
 	var formattedSkill = HTMLskills.replace("%data%", bio.skills[3]);
 	$("#skills").append(formattedSkill);
+	var formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
+	$("#skills").append(formattedSkill);
+	var formattedSkill = HTMLskills.replace("%data%", bio.skills[5]);
+	$("#skills").append(formattedSkill);
+
 }
+
 
 var education = {
 	"schools": [{
@@ -171,7 +183,6 @@ projects.dispay();
 // intenationalisation
 function inName(name) {
     name = name.trim().split(" ");
-    console.log(name);
     name[1] = name[1].toUpperCase();
     name[0] = name[0].slice(0,1).toUppercase() + name[0].slice(1).toLowerCase();
     return name[0] + " "+name[1];
@@ -190,9 +201,9 @@ var charEscape = function(_html) {
 };
 
 $( document ).ready(function() {
-	$( ".project-entry img" ).addClass( "col-md-4 lightbox_trigger");
+	$( ".project-entry img" ).addClass( "col-md-4 img-responsive");
 
 	$('.parallax-window').parallax({imageSrc: 'images/winter.jpg'});
 });
 
-//jQuery(window).trigger('resize').trigger('scroll');
+jQuery(window).trigger('resize').trigger('scroll');
