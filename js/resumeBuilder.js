@@ -69,20 +69,20 @@ var education = {
 		"location": "Kinshasa",
 		"degree": "High School",
 		"majors": ["Math - Physics"],
-		"dates": 2009,
+		"dates": "September 2008 - June 2009",
 		"url": "#"
 	}, {
 		"name": "Cape Peninsula University of Technology",
 		"location": "Cape Town",
 		"degree": "Btech",
 		"majors": ["Computer System"],
-		"dates": 2013,
+		"dates": "January 2011- December 2013",
 		"url": "cput.ac.za"
 	}],
 	"onlineCourses": [{
 		"title": "JavaScript Syntax",
 		"school": "Udacity",
-		"date": 2016,
+		"date": "March 2016 - Current",
 		"url": "udacity.com"
 	}]
 }
@@ -103,7 +103,7 @@ var work = {
 		"description": "Passionate about solving highly stressful situation with clean, excellent and fast method."	}]
 
 }
-function displayWork(){
+ work.display = function(){
 	for (job in work.jobs){
 		$("#workExperience").append(HTMLworkStart);
 		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
@@ -118,25 +118,35 @@ function displayWork(){
 		$(".work-entry:last").append(formattedDescription);
 	}
 }
-displayWork();
+work.display();
 
 
-function displayEducation(){
-	for (school in education.schools){
-		$("#education").append(HTMLschoolStart);
-		var formattedSchool = HTMLschoolName.replace("%data%", education.schools[school].name);
-		var formattedTitle = HTMLschoolMajor.replace("%data%", education.schools[school].majors );
-		var formmatedSchoolTitle = formattedSchool + formattedTitle;
-		$(".education-entry:last").append(formmatedSchoolTitle);
+education.display = function() {
+    $("#education").append(HTMLschoolStart);
+    for(var school in education.schools) {
+        var schoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+        $(".education-entry").append(schoolName);
+        var schoolYear = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+        $(".education-entry").append(schoolYear);
+        var schoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].majors);
+        $(".education-entry").append(schoolMajor);
+    }
 
-		var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
-		$(".education-entry:last").append(formattedDegree);
+    $(".education-entry").append(HTMLonlineClasses);
+    for(var onlineCourse in education.onlineCourses) {
 
-		var formattedDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
-		$(".education-entry:last").append(formattedDates);
-	}
-}
-displayEducation();
+        var onlineCourseName = HTMLonlineTitle.replace("%data%", education.onlineCourses[onlineCourse].title);
+
+        var onlineSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[onlineCourse].school);
+        $(".education-entry").append(onlineCourseName + onlineSchool);
+
+        var onlineCourseYear = HTMLonlineDates.replace("%data%", education.onlineCourses[onlineCourse].date);
+        $(".education-entry").append(onlineCourseYear);
+        var onlineURL = HTMLonlineURL.replace("%data%", education.onlineCourses[onlineCourse].url);
+        $(".education-entry").append(onlineURL);
+    }
+};
+education.display();
 
 var projects = {
 	"projects": [{
@@ -158,7 +168,7 @@ var projects = {
 	}]
 }
 
-projects.dispay = function () {
+projects.display = function () {
 	for (project in projects.projects) {
 		$("#projects").append(HTMLprojectStart);
 		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
@@ -178,7 +188,7 @@ projects.dispay = function () {
 		}
 	}
 }
-projects.dispay();
+projects.display();
 
 // intenationalisation
 function inName(name) {
