@@ -67,6 +67,9 @@ h5 {
   margin: 0 !important;
 }
 
+.education-entry h2 {
+    padding: 10px 0;
+}
 
 .date-text {
   font-style: italic;
