@@ -1,9 +1,5 @@
 /* Resume page. */
 
-var bioPic = HTMLbioPic.replace("%data%", "images/joel.jpg");
-//var welcomeMsg = HTMLwelcomeMsg.replace("%data%", 0731566216);
-// $("#workExperience h2").append(welcomeMsg);
-
 var bio = {
     "name" : "Joel Samuel Kapepula",
     "role" : "Web Developer",
